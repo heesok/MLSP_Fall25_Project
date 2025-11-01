@@ -1,4 +1,6 @@
 import librosa
+import numpy as np
+import mir_eval
 
 gt_vocal, sr_gt = librosa.load('data/vocal_trimmed.wav', sr=None)
 gt_instr, sr_gt = librosa.load('data/inst_trimmed.wav', sr=None)
@@ -22,3 +24,13 @@ gt_instr, est_instr = gt_instr[:min_len], est_instr[:min_len]
 print(f"After resampling and trimming:")
 print(f"Length vocal: {gt_vocal.shape}, Length instrumental: {gt_instr.shape}")
 print(f"Length estimated vocal: {est_vocal.shape}, Length estimated instrumental: {est_instr.shape}")
+
+
+sdr, sir, sar, perm = mir_eval.separation.bss_eval_sources(
+    np.stack([gt_vocal, gt_instr], axis=0), 
+    np.stack([est_vocal, est_instr], axis=0)
+)
+
+print("SDR:", sdr)
+print("SIR:", sir)
+print("SAR:", sar)
