@@ -1,0 +1,8 @@
+numpy
+librosa
+soundfile
+matplotlib
+scipy
+scikit-learn
+pyroomacoustics
+mir_eval
