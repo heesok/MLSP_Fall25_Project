@@ -10,8 +10,13 @@
 - `vocal_trimmed.wav`: Trimmed vocal-only track of the original music file (Downloaded from YouTube)
 - `inst_trimmed.wav`: Trimmed instrument-only track of the original music file (Downloaded from YouTube)
 
+### Results
+`output/`
+- each folder contains output from each BSS method
+
 ### Codes
 `scripts/`
 - `NMF_BSS.ipynb`: Code for NMF blind source separation
 - `ICA_BSS.ipynb`: Code for ICA blind source separation
 - `evaluate.py`: Code for evaluating separated results compare to groud truth files
+- `plot_qualitative_results.ipynb`: Code for qualitative evaluation of BSS methods
