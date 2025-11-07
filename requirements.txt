@@ -4,5 +4,4 @@ soundfile
 matplotlib
 scipy
 scikit-learn
-pyroomacoustics
 mir_eval
