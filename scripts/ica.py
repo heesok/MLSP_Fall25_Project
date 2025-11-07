@@ -59,7 +59,8 @@ def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     for i in range(H.shape[0]):
         path = os.path.join(OUTPUT_DIR, f"comp{i}.wav")
-        sf.write(path, H[i], sr)
+        normalized_comp = H[i] / np.max(np.abs(H[i])) * 0.99 
+        sf.write(path, normalized_comp, sr)
     print(f"Saved independent components to {OUTPUT_DIR}")
 
 if __name__ == "__main__":
