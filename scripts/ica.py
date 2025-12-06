@@ -3,8 +3,8 @@ import librosa
 import numpy as np
 import soundfile as sf
 
-INPUT_PATH = 'data/die_with_a_smile_trimmed_51s.wav'
-OUTPUT_DIR = 'output/ICA'
+INPUT_PATH = 'data/Tiki3_dev1/original.wav'
+OUTPUT_DIR = 'output/Tiki3/ICA'
 
 def ica(X, n_components=None, eps=1e-12):
     # ICA function 
