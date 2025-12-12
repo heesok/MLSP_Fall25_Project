@@ -7,3 +7,4 @@ scikit-learn
 mir_eval
 pandas
 ipython
+ssspy
