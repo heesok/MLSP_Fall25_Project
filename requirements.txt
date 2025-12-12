@@ -5,3 +5,5 @@ matplotlib
 scipy
 scikit-learn
 mir_eval
+pandas
+ipython
