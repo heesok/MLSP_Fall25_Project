@@ -1,10 +1,9 @@
 import os
+import argparse
 import librosa
 import numpy as np
 import soundfile as sf
 
-INPUT_PATH = 'data/Tiki3_dev1/original.wav'
-OUTPUT_DIR = 'output/Tiki3/ICA'
 
 def ica(X, n_components=None, eps=1e-12):
     # ICA function 
@@ -35,7 +34,7 @@ def ica(X, n_components=None, eps=1e-12):
 
     # whitening
     print('  computing whitening matrix ...')
-    C = np.diag(1.0 / np.sqrt(evals)) @ E.T # diag(λ^{-1/2})E.T
+    C = np.diag(1.0 / np.sqrt(evals)) @ E.T 
     Z = C @ Xc # Whitened data (n x N)
 
     # 3) FOBI matrix D
@@ -53,15 +52,20 @@ def ica(X, n_components=None, eps=1e-12):
     return H
 
 def main():
-    X, sr = librosa.load(INPUT_PATH, mono=False) 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', type=str, default='data/Tiki3_dev1/original.wav', help='Path to input mixture audio file')
+    parser.add_argument('--output_dir', type=str, default='output/Tiki3/ICA', help='Directory to save output components')
+    args = parser.parse_args()
+
+    X, sr = librosa.load(args.input, mono=False) 
     print(f"Original shape: {X.shape}, Sample rate: {sr}")
     H = ica(X)
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(args.output_dir, exist_ok=True)
     for i in range(H.shape[0]):
-        path = os.path.join(OUTPUT_DIR, f"comp{i}.wav")
+        path = os.path.join(args.output_dir, f"comp{i}.wav")
         normalized_comp = H[i] / np.max(np.abs(H[i])) * 0.99 
         sf.write(path, normalized_comp, sr)
-    print(f"Saved independent components to {OUTPUT_DIR}")
+    print(f"Saved independent components to {args.output_dir}")
 
 if __name__ == "__main__":
     main()

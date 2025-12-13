@@ -17,7 +17,11 @@
 ### Codes
 `scripts/`
 - `NMF_BSS.ipynb`: Implementation of the NMF-based blind source separation method.
-- `ica.py`: Implementation of the ICA-based blind source separation method.
+- `ica.py`: Implementation of the ICA-based blind source separation method. Run following comment to run ICA
+    ```
+    python scripts/ica.py --input INPUT_FILE --output_dir OUTPUT_DIR
+    ```
+- `iva+ilrma.ipynb`: Implementation of IVA and ILRMA.
 - `utils.py`: Utility function for loading and preprocessing audio files before evaluation, including resampling to match sample rates and trimming to align lengths.
 - `plot_quantitative_results.ipynb`: Quantitative evaluation script computing MSE, SDR, SIR, and SAR for all methods.
 - `plot_qualitative_results.ipynb`: Qualitative evaluation script visualizing pitch tracks and MFCC features for comparison.
